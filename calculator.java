@@ -1,3 +1,5 @@
+//package calculator;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -14,7 +16,11 @@ import javax.swing.SwingConstants;
         new Calculator();
         
     }
+    boolean isOperatorClicked=false;
 
+    int n;
+    float result;
+    String oldValue;
     JFrame jf;
     JLabel displayLabel;
     JButton sevenButton;
@@ -33,6 +39,8 @@ import javax.swing.SwingConstants;
     JButton divisionButton;
     JButton zeroButton;
     JButton equalButton;
+    JButton darkButton;
+    JButton whiteButton;
 
     public Calculator(){
          jf=new JFrame("CALCULATOR");
@@ -99,10 +107,11 @@ import javax.swing.SwingConstants;
         jf.add(multipleButton);
         multipleButton.addActionListener(this);
 
-        JButton darkButton=new JButton("DARK");
+        darkButton=new JButton("DARK");
         darkButton.setBounds(470, 220, 80, 80);
         darkButton.setFont(new Font("Arial",Font.PLAIN,15));
         jf.add(darkButton);
+        darkButton.addActionListener(this);
 
         oneButton=new JButton("1");
         oneButton.setBounds(30, 320, 80, 80);
@@ -128,10 +137,11 @@ import javax.swing.SwingConstants;
         jf.add(plusButton);
         plusButton.addActionListener(this);
 
-        JButton whiteButton=new JButton("WHITE");
+        whiteButton=new JButton("WHITE");
         whiteButton.setBounds(470, 320, 80, 80);
         whiteButton.setFont(new Font("Arial",Font.PLAIN,13));
         jf.add(whiteButton);
+        whiteButton.addActionListener(this);
 
         allclearButton=new JButton("AC");
         allclearButton.setBounds(30, 420, 80, 80);
@@ -155,6 +165,7 @@ import javax.swing.SwingConstants;
         equalButton.setBounds(360, 420, 80, 80);
         equalButton.setFont(new Font("Arial",Font.PLAIN,40));
         jf.add(equalButton); 
+        equalButton.addActionListener(this);
         
 
 
@@ -168,46 +179,156 @@ import javax.swing.SwingConstants;
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==sevenButton){
+            if(isOperatorClicked){
+                displayLabel.setText("7");
+                isOperatorClicked=false;
+            }else{
+                displayLabel.setText(displayLabel.getText()+"7");
+            }
             
-            displayLabel.setText(displayLabel.getText()+"7");
         }else if(e.getSource()==eightButton){
-            displayLabel.setText(displayLabel.getText()+"8");
+            if(isOperatorClicked){
+                displayLabel.setText("8");
+                isOperatorClicked=false;
+            }else{
+                displayLabel.setText(displayLabel.getText()+"8");
+            }
+           
             
         }else if(e.getSource()==nineButton){
-            displayLabel.setText(displayLabel.getText()+"9");
+            if(isOperatorClicked){
+                displayLabel.setText("9");
+                isOperatorClicked=false;
+            }else{
+                displayLabel.setText(displayLabel.getText()+"9");
+            }
+            
             
         }else if(e.getSource()==fourButton){
-            displayLabel.setText(displayLabel.getText()+"4");
+            if(isOperatorClicked){
+                displayLabel.setText("4");
+                isOperatorClicked=false;
+            }else{
+                displayLabel.setText(displayLabel.getText()+"4");
+            }
+            
             
         }else if(e.getSource()==fiveButton){
-            displayLabel.setText(displayLabel.getText()+"5");
+            if(isOperatorClicked){
+                displayLabel.setText("5");
+                isOperatorClicked=false;
+            }else{
+                displayLabel.setText(displayLabel.getText()+"5");
+            }
+            
             
         }else if(e.getSource()==sixButton){
-            displayLabel.setText(displayLabel.getText()+"6");
+            if(isOperatorClicked){
+                displayLabel.setText("6");
+                isOperatorClicked=false;
+            }else{
+                displayLabel.setText(displayLabel.getText()+"6");
+            }
+            
             
         }else if(e.getSource()==oneButton){
-            displayLabel.setText(displayLabel.getText()+"1");
+            if(isOperatorClicked){
+                displayLabel.setText("1");
+                isOperatorClicked=false;
+            }else{
+                displayLabel.setText(displayLabel.getText()+"1");
+            }
+            
             
         }else if(e.getSource()==twoButton){
-            displayLabel.setText(displayLabel.getText()+"2");
+            if(isOperatorClicked){
+                displayLabel.setText("2");
+                isOperatorClicked=false;
+            }else{
+                displayLabel.setText(displayLabel.getText()+"2");
+            }
+            
             
         }else if(e.getSource()==threeButton){
-            displayLabel.setText(displayLabel.getText()+"3");
+            if(isOperatorClicked){
+                displayLabel.setText("3");
+                isOperatorClicked=false;
+            }else{
+                displayLabel.setText(displayLabel.getText()+"3");
+            }
+            
             
         }else if(e.getSource()==zeroButton){
-            displayLabel.setText(displayLabel.getText()+"0");
+            if(isOperatorClicked){
+                displayLabel.setText("0");
+                isOperatorClicked=false;
+            }else{
+                displayLabel.setText(displayLabel.getText()+"0");
+            }
+            
             
         }else if(e.getSource()==plusButton){
-            displayLabel.setText(displayLabel.getText()+" + ");
+           //displayLabel.setText(displayLabel.getText()+" + ");
+           isOperatorClicked=true;
+           oldValue=displayLabel.getText();
+            n=1;
             
         }else if(e.getSource()==divisionButton){
-            displayLabel.setText(displayLabel.getText()+" % ");
+           // displayLabel.setText(displayLabel.getText()+" % ");
+            isOperatorClicked=true;
+           oldValue=displayLabel.getText();
+           n=2;
         
         }else if(e.getSource()==multipleButton){
-            displayLabel.setText(displayLabel.getText()+" x ");
+            //displayLabel.setText(displayLabel.getText()+" x ");
+            isOperatorClicked=true;
+           oldValue=displayLabel.getText();
+           n=3;
+            
+        }else if(e.getSource()==darkButton){
+            jf.getContentPane().setBackground(Color.DARK_GRAY);
+            displayLabel.setBackground(Color.LIGHT_GRAY);
+            displayLabel.setForeground(Color.BLACK);
+            
+            
+        }else if(e.getSource()==whiteButton){
+            jf.getContentPane().setBackground(Color.WHITE);
+            displayLabel.setBackground(Color.DARK_GRAY);
+            displayLabel.setForeground(Color.WHITE);
+        }else if(e.getSource()==allclearButton){
+            
+            displayLabel.setText("");
+        }
+        //.......................................................................................................
+        else if(e.getSource()==deleteButton){
+            String currentText = displayLabel.getText();
+        if (!currentText.isEmpty()) {
+            // Remove the last character from the display label
+            displayLabel.setText(currentText.substring(0, currentText.length() - 1));
+        }
+            
             
         }
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+        //........................................................................................................
+        else if(e.getSource()==equalButton){
+            
+            String newValue=displayLabel.getText();
+            float oldValueF=Float.parseFloat(oldValue);
+            float newValueF=Float.parseFloat(newValue);
+            switch(n){
+                case 1: result=oldValueF+newValueF;
+                        break;
+                case 2: result=oldValueF/newValueF;
+                        break;
+                case 3: result=oldValueF*newValueF;
+                        break;        
+            }
+            
+            displayLabel.setText(Float.toString(result));
+
+        }
+
+        //throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
     }
 
 
